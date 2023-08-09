@@ -4,10 +4,26 @@ import axios from 'axios';
 import './style/ProductListing.css';
 import NavBar from './navBar';
 
-function ProductListing({products}) {
+function ProductListing() {
+  const [products , setProducts] = useState([])
+  const [category , setCategory] = useState('')
+  useEffect(()=>{
+    if(category ==  "All") {
+      axios.get(`https://fakestoreapi.com/products`)
+      .then(res => setProducts(res.data))
+      .catch(err => console.log(err))
+    }else{
+      axios.get(`https://fakestoreapi.com/products/category/${category}`)
+      .then(res => setProducts(res.data))
+      .catch(err => console.log(err))
+    }
+  },[category])
+  const handleCategoryChange=(data)=>{
+    setCategory(data)
+  }
   return (
     <div className="product-listing">
-     <NavBar  logo={'E Shop'}/>
+     <NavBar handleSendCategoryToApp={handleCategoryChange}  logo={'E Shop'}/>
       <h1>Product Listing</h1>
       <div className="products">
         {products.map((product) => (

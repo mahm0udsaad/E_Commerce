@@ -8,21 +8,6 @@ import { Cart } from './context/cart';
 import CartDetail from '../components/CartDetail';
 function App() {
   const [products , setProducts] = useState([])
-  const [category , setCategory] = useState('')
-  useEffect(()=>{
-    if(category == '') {
-      axios.get(`https://fakestoreapi.com/products`)
-      .then(res => setProducts(res.data))
-      .catch(err => console.log(err))
-    }else{
-      axios.get(`https://fakestoreapi.com/products/category/${category}`)
-      .then(res => setProducts(res.data))
-      .catch(err => console.log(err))
-    }
-  },[category])
-  const handleCategoryChange=(data)=>{
-    setCategory(data)
-  }
 
   return (
     <Router>

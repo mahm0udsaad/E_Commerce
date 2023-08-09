@@ -6,8 +6,7 @@ import { Cart } from "../src/context/cart";
 const categories = ["All", "electronics", "jewelery", "men's clothing", "women's clothing"];
 
 const NavBar = ({ handleSendCategoryToApp , logo  }) => { 
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const navigate = useNavigate();
   const { numOfItems } = useContext(Cart)
 
