@@ -6,16 +6,18 @@ import NavBar from './navBar';
 
 function ProductListing() {
   const [products , setProducts] = useState([])
-  const [category , setCategory] = useState('')
+  const [category , setCategory] = useState("All")
   useEffect(()=>{
     if(category ==  "All") {
       axios.get(`https://fakestoreapi.com/products`)
       .then(res => setProducts(res.data))
       .catch(err => console.log(err))
+      console.log(products);
     }else{
       axios.get(`https://fakestoreapi.com/products/category/${category}`)
       .then(res => setProducts(res.data))
       .catch(err => console.log(err))
+      console.log(products);
     }
   },[category])
   const handleCategoryChange=(data)=>{
